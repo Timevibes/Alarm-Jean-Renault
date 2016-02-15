@@ -1,0 +1,36 @@
+#define relais1 PB0
+#define bouton PB1
+#define relais1On digitalWrite (relais1,1)
+#define relais1Off digitalWrite (relais1,0)
+#define check digitalRead(bouton)
+
+void setup () {
+  pinMode (relais1,OUTPUT);
+  pinMode (bouton,INPUT);
+}
+
+const int timeout = 30;
+const int stoptimeout = 5;
+boolean buttonState = 0;
+boolean prevbuttonState =0;
+boolean pushFlag = 0;
+int pushCounter=0;
+int stopCounter=0;
+int puush = 0;
+int stoop = 0;
+
+void loop (){
+  prevbuttonState = buttonState;
+  if (check) buttonState=1;
+  else buttonState=0;
+  if (buttonState == 1 && prevbuttonState == 0) pushFlag = 1;
+  if (buttonState == 1 && prevbuttonState == 1) stopCounter++;
+  else stopCounter = 0;
+  if (pushFlag) {pushCounter++;relais1On;}
+  stoop = stopCounter/100;
+  puush = pushCounter/100;
+  if (puush == timeout) {pushCounter = 0;relais1Off;pushFlag=0;}
+  if (pushFlag && stoop == stoptimeout) {pushCounter = 0; relais1Off; pushFlag = 0; 
+      stopCounter = 0;}
+  delay(10);
+}
