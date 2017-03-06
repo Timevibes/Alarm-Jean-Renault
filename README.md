@@ -1,2 +1,2 @@
-# Alarm-Jean-Renault
-code written for the Alarm button in Jean Renault, the microcontroller is a Attiny-85
+# Alarm-Jean-Reno
+code written for the Alarm button in Jean Reno, the microcontroller is a Attiny-85
